@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DHB Cookie Inspector</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="8" cy="9" r="1.5" fill="currentColor" opacity="0.6"/>
+          <circle cx="15" cy="8" r="1" fill="currentColor" opacity="0.4"/>
+          <circle cx="13" cy="14" r="1.5" fill="currentColor" opacity="0.6"/>
+          <circle cx="7" cy="15" r="1" fill="currentColor" opacity="0.4"/>
+        </svg>
+      </div>
+      <h1 class="header-title">DHB Cookie Inspector</h1>
+    </header>
+
+    <section class="site-info">
+      <span class="site-label">Current site</span>
+      <span class="site-hostname" id="hostname">—</span>
+    </section>
+
+    <div class="error-message" id="errorMessage" role="alert" hidden>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="12" y1="8" x2="12" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="12" cy="16.5" r="0.8" fill="currentColor"/>
+      </svg>
+      <span id="errorText"></span>
+    </div>
+
+    <!-- Inspect Cookies Button (always visible) -->
+    <button class="btn-inspect" id="inspectBtn" type="button">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+        <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <span>Inspect Cookies</span>
+    </button>
+
+    <!-- Cookie Output -->
+    <section class="output-section" id="outputSection" hidden>
+      <div class="output-header">
+        <span class="output-label" id="cookieCount">Cookies</span>
+        <button class="btn-copy" id="copyBtn" type="button" title="Copy to clipboard">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" id="copyIcon">
+            <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M5 15V5a2 2 0 0 1 2-2h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" id="checkIcon" class="hidden">
+            <polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span id="copyText">Copy</span>
+        </button>
+      </div>
+      <textarea class="cookie-output" id="cookieOutput" readonly spellcheck="false" placeholder="No cookies found."></textarea>
+    </section>
+
+    <!-- Facebook Token Section (only shown on Facebook domains) -->
+    <section class="fb-section" id="fbSection" hidden>
+      <div class="section-divider">
+        <span>Facebook Tools</span>
+      </div>
+
+      <div class="fb-buttons">
+        <button class="btn-fb btn-fb-ads" id="fbAdsTokenBtn" type="button">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M2 17l10 5 10-5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+          <span>Get Ads Token</span>
+        </button>
+        <button class="btn-fb btn-fb-bm" id="fbBmTokenBtn" type="button">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M9 9h6M9 12h6M9 15h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span>Get BM Token</span>
+        </button>
+      </div>
+
+      <!-- Token Output -->
+      <section class="output-section" id="tokenOutputSection" hidden>
+        <div class="output-header">
+          <span class="output-label" id="tokenLabel">Token</span>
+          <button class="btn-copy" id="copyTokenBtn" type="button" title="Copy token">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" id="copyTokenIcon">
+              <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M5 15V5a2 2 0 0 1 2-2h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" id="checkTokenIcon" class="hidden">
+              <polyline points="20 6 9 17 4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span id="copyTokenText">Copy</span>
+          </button>
+        </div>
+        <textarea class="cookie-output token-output" id="tokenOutput" readonly spellcheck="false" placeholder="No token found."></textarea>
+      </section>
+    </section>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">Copied</div>
+    <footer class="footer"><span>DHB Tools • Local only • No data transmitted</span></footer>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
