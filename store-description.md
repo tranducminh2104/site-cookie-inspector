@@ -1,13 +1,13 @@
 # Chrome Web Store Listing
 
 ## Name
-Site Cookie Inspector
+DHB Cookie Inspector
 
 ## Short Description
-Inspect cookies for the current site locally. No analytics, no data collection.
+Inspect cookies for the current site locally. By DHB Tools.
 
 ## Detailed Description
-Helps developers inspect cookies for the active website. All processing local. No remote servers.
+DHB Cookie Inspector helps developers inspect cookies for the active website. All processing local. No remote servers. By DHB Tools.
 
 ## Category
 Developer Tools

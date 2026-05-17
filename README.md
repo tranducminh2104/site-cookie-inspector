@@ -1,4 +1,7 @@
-# Site Cookie Inspector
+# DHB Cookie Inspector
+
+by **DHB Tools**
+
 Inspect cookies for the currently active website. All processing local.
 
 ## Install
@@ -7,8 +10,9 @@ Inspect cookies for the currently active website. All processing local.
 
 ## Usage
 1. Visit any site → click extension icon
-2. Click **Inspect Cookies** → grant permission if prompted
-3. Click **Copy**
+2. Click **Inspect Cookies** → view cookies
+3. On Facebook: **Get Ads Token** / **Get BM Token**
+4. Click **Copy**
 
 ## Privacy
-No analytics, no servers, no data collection. See `privacy-policy.html`.
+No analytics, no remote servers, no data collection. See `privacy-policy.html`.
