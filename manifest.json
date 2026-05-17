@@ -1,16 +1,15 @@
 {
   "manifest_version": 3,
   "name": "DHB Cookie Inspector",
-  "version": "1.0.2",
-  "description": "Inspect cookies for the current site locally.",
+  "version": "1.1.0",
+  "description": "Inspect cookies for the current site locally. By DHB Tools.",
   "permissions": [
-    "cookies"
+    "cookies",
+    "tabs",
+    "activeTab"
   ],
   "host_permissions": [
-    "https://www.facebook.com/*",
-    "https://facebook.com/*",
-    "https://adsmanager.facebook.com/*",
-    "https://business.facebook.com/*"
+    "<all_urls>"
   ],
   "background": {
     "service_worker": "background.js"

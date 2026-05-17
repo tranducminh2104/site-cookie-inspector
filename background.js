@@ -7,7 +7,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     .then(result => sendResponse({ ok: true, result }))
     .catch(error => sendResponse({ ok: false, error: error.message }));
 
-  return true; // keep message channel open for async response
+  return true;
 });
 
 async function fetchFacebookPage(url) {
@@ -19,7 +19,7 @@ async function fetchFacebookPage(url) {
   const parsed = new URL(url);
 
   if (!allowedOrigins.includes(parsed.origin)) {
-    throw new Error('Blocked URL origin.');
+    throw new Error('Blocked URL origin: ' + parsed.origin);
   }
 
   const resp = await fetch(url, {
@@ -30,11 +30,14 @@ async function fetchFacebookPage(url) {
     },
   });
 
-  const text = await resp.text();
+  const body = await resp.text();
 
   return {
     status: resp.status,
     finalUrl: resp.url,
-    body: text,
+    contentType: resp.headers.get('content-type') || '',
+    redirected: resp.redirected,
+    bodyLength: body.length,
+    body,
   };
 }
